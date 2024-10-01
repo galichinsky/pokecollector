@@ -21,6 +21,7 @@ html {
 }
 
 body {
+  background: linear-gradient(45deg, #68c6f8, whitesmoke);
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -30,7 +31,7 @@ body {
     'Helvetica Neue', sans-serif;
   min-height: 100vh;
   --nav-bg: rgba(104, 197, 248, 0.7);
-  --nav-bg-ff: rgba(104, 197, 248, 0.9);
+  --nav-bg-ff: #68c5f8e6;
   --borders: rgb(36, 116, 248) solid 2px;
   --text-color: rgb(17, 20, 17);
   --link-hover-color: rgb(16, 56, 158);
@@ -105,7 +106,12 @@ nav li {
 .page-header {
   display: flex;
   align-items: center;
+  justify-content: center;
+
   margin: 20px;
+}
+section.page-header {
+  justify-content: center;
 }
 
 .btn {
@@ -153,11 +159,11 @@ nav li {
 
 .page-header img {
   height: 40px;
-  margin-left: 15px;
+  /* margin-left: 15px; */
 }
 
 .page-header img:first-of-type {
-  margin-left: 20px;
+  /* margin-left: 20px; */
 }
 
 .page-content {
@@ -209,11 +215,11 @@ nav li {
 
   .page-header img {
     height: 50px;
-    margin-left: 20px;
+    margin: 10px;
   }
 
   .page-header img:first-of-type {
-    margin-left: 25px;
+    /* margin-left: 25px; */
   }
 
   @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
