@@ -6,4 +6,5 @@ urlpatterns = [
   path('about/', views.about, name='about'),
   # route for cats index
   path('pokemon/', views.index, name='pokemon-index'),
+  path('pokemon/<int:poke_id>/', views.poke_detail, name='poke-detail'),
 ]
