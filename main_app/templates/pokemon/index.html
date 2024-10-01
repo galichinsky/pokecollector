@@ -7,10 +7,11 @@
 
 <section class="page-header">
   <h1>Pokémon List</h1>
-  <img src="{{ pokemon.0.sprite_url }}" alt="Pikachu" />
+  <img src="{{ pokemon.0.sprite_url }}" alt="Pikachu"  />
   <img src="{{ pokemon.1.sprite_url }}" alt="Bulbasaur" />
   <img src="{{ pokemon.2.sprite_url }}" alt="Charmander" />
   <img src="{{ pokemon.3.sprite_url }}" alt="Squirtle" />
+  {% comment %} <img src="{{ poke.sprite_url }}" /> {% endcomment %}
 </section>
 
 <section class="card-container">
@@ -19,8 +20,10 @@
       <div class="card-content">
         <div class="card-img-container">
           <img
-            src="{{ poke.sprite_url }}"
+            src="{{ poke.sprite_url }}" 
             alt="A Pokémon"
+            style= "width: 250px;"
+            
           />
         </div>
         <h2 class="card-title">{{ poke.name }}</h2>
