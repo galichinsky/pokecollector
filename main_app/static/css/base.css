@@ -21,7 +21,6 @@ html {
 }
 
 body {
-  background: linear-gradient(45deg, #68c6f8, whitesmoke);
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -31,7 +30,7 @@ body {
     'Helvetica Neue', sans-serif;
   min-height: 100vh;
   --nav-bg: rgba(104, 197, 248, 0.7);
-  --nav-bg-ff: #68c5f8e6;
+  --nav-bg-ff: rgba(104, 197, 248, 0.9);
   --borders: rgb(36, 116, 248) solid 2px;
   --text-color: rgb(17, 20, 17);
   --link-hover-color: rgb(16, 56, 158);
@@ -48,6 +47,7 @@ body {
   --font-l: 1.8rem;
   --font-reg: 1.6rem;
   --card-border-radius: 6px;
+  background: linear-gradient(45deg, cyan, lightcyan);
 }
 
 header {
@@ -99,19 +99,20 @@ nav li {
 
 .header-logo-container {
   margin: auto;
-  padding: 10px 20px 0;
-  max-width: 500px;
+  padding: 0;
+  /* max-width: 500px; */
+  object-fit: contain;
+}
+
+.header-logo-container img {
+  width: 100%;
+  object-fit: contain;
 }
 
 .page-header {
   display: flex;
   align-items: center;
-  justify-content: center;
-
   margin: 20px;
-}
-section.page-header {
-  justify-content: center;
 }
 
 .btn {
@@ -159,11 +160,11 @@ section.page-header {
 
 .page-header img {
   height: 40px;
-  /* margin-left: 15px; */
+  margin-left: 15px;
 }
 
 .page-header img:first-of-type {
-  /* margin-left: 20px; */
+  margin-left: 20px;
 }
 
 .page-content {
@@ -171,28 +172,15 @@ section.page-header {
 }
 
 @media only screen and (min-width: 768px) {
-  header {
-    position: sticky;
-    display: flex;
-    flex-direction: row;
-    top: 0;
-    align-items: center;
-  }
 
   main {
     max-width: 1300px;
     min-height: calc(100vh - 53px);
   }
 
-  nav,
-  .header-logo-container {
-    margin: 10px 0;
-    padding: 0 15px;
-  }
-
-  /* visual fix to help align logo */
   .header-logo-container {
     padding-top: 3px;
+    width: 55%;
   }
 
   nav {
@@ -205,21 +193,17 @@ section.page-header {
     flex-wrap: nowrap;
   }
 
-  .header-logo-container {
-    width: 213px;
-  }
-
   .page-header h1 {
     font-size: var(--font-xtreme);
   }
 
   .page-header img {
     height: 50px;
-    margin: 10px;
+    margin-left: 20px;
   }
 
   .page-header img:first-of-type {
-    /* margin-left: 25px; */
+    margin-left: 25px;
   }
 
   @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
@@ -237,31 +221,29 @@ section.page-header {
   }
 
   header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin: 20px 20px 0 20px;
-    width: calc(100vw - 40px);
+    width: calc(100vw - 20px);
     max-width: 1920px;
     top: 20px;
     background-color: transparent;
     border-bottom: none;
   }
 
-  nav,
-  .header-logo-container {
+  nav {
     margin: 0;
     background: var(--nav-bg-ff);
     border: var(--borders);
-    border-radius: 18px;
-  }
-
-  nav {
-    margin-left: auto;
+    border-radius: 12px;
   }
 
   .header-logo-container {
     /* visual fix to help align logo */
-    padding-top: 6px;
-    width: 256px;
-    height: 35px;
+    padding-top: 2px;
+    width: 55%;
   }
 
   @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
@@ -272,7 +254,7 @@ section.page-header {
 
     nav,
     .header-logo-container {
-      background: rgba(248, 248, 104, 0.967);
+      /* background: rgba(104, 197, 248, 0.6); */
       -webkit-backdrop-filter: blur(3px);
       backdrop-filter: blur(3px);
     }
