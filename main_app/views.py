@@ -3,10 +3,9 @@ import requests
 from django.urls import reverse_lazy
 from django.views.generic.edit import DeleteView
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from django.http import HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseNotFound
 from .models import Pokemon
-from .forms import PokemonNicknameForm
+from .forms import PokemonNicknameForm, FeedingForm
 
 def home(request):
     return render(request, 'pokemon/home.html')
@@ -43,19 +42,14 @@ def index(request):
 def poke_detail(request, poke_id):
     try:
         pokemon = Pokemon.objects.get(poke_id=poke_id)
+        feeding_form = FeedingForm()
     except Pokemon.DoesNotExist:
         return HttpResponseNotFound("Pokemon not found")
 
     return render(request, 'pokemon/detail.html', {
-        'pokemon': {
-            'name': pokemon.name,
-            'poke_id': pokemon.poke_id,
-            'xp': pokemon.xp,
-            'type': pokemon.type,
-            'abilities': pokemon.abilities,
-            'image_url': pokemon.image_url,
-            'nickname': pokemon.nickname
-        }
+        'pokemon': pokemon,
+        'feedings': pokemon.feedings.all(),
+        'feeding_form': feeding_form,
     })
 
 def catch_pokemon(request, poke_id):
@@ -108,3 +102,19 @@ def update_nickname(request, poke_id):
         form = PokemonNicknameForm(instance=pokemon)
 
     return render(request, 'pokemon/update_nickname.html', {'form': form, 'pokemon': pokemon})
+
+def add_feeding(request, poke_id):
+    try:
+        pokemon = Pokemon.objects.get(poke_id=poke_id)
+    except Pokemon.DoesNotExist:
+        return HttpResponseNotFound("Pokemon not found")
+
+    form = FeedingForm(request.POST)
+
+    if form.is_valid():
+        new_feeding = form.save(commit=False)
+        new_feeding.pokemon = pokemon
+        new_feeding.save()
+        return redirect('poke-detail', poke_id=poke_id)
+
+    return render(request, 'pokemon/add_feeding.html', {'form': form, 'pokemon': pokemon})
