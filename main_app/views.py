@@ -1,10 +1,11 @@
 import random
 import requests
 from django.urls import reverse_lazy
-from django.views.generic.edit import DeleteView
+from django.views.generic.edit import DeleteView, CreateView
+from django.views.generic import ListView, DetailView
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseNotFound
-from .models import Pokemon
+from .models import Pokemon, Item
 from .forms import PokemonNicknameForm, FeedingForm
 
 def home(request):
@@ -48,7 +49,6 @@ def poke_detail(request, poke_id):
 
     return render(request, 'pokemon/detail.html', {
         'pokemon': pokemon,
-        'feedings': pokemon.feedings.all(),
         'feeding_form': feeding_form,
     })
 
@@ -118,3 +118,17 @@ def add_feeding(request, poke_id):
         return redirect('poke-detail', poke_id=poke_id)
 
     return render(request, 'pokemon/add_feeding.html', {'form': form, 'pokemon': pokemon})
+
+
+class ItemCreate(CreateView):
+    model = Item
+    fields = '__all__'
+    success_url = reverse_lazy('item-index')
+    
+class ItemList(ListView):
+    model = Item
+    
+    
+class ItemDetail(DetailView):
+    model = Item
+    

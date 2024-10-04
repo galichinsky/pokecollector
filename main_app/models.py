@@ -11,6 +11,16 @@ MEALS = (
     ("W", "Tonkatsu"),
 )
 
+class Item(models.Model):
+    name = models.CharField(max_length=50)
+    effect = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('item-detail', kwargs={'item_id': self.id})
+
 
 class Pokemon(models.Model):
     name = models.CharField(max_length=100)

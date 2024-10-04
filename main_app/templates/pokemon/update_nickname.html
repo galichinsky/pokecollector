@@ -1,15 +1,16 @@
-{% extends 'base.html'%}
-{% load static %}
-{% block head %}
-    <link rel="stylesheet" href="{% static 'css/pokemon/poke-index.css' %}">
-{% endblock %}
-{% block content %}
+{% extends 'base.html'%} {% load static %} {% block head %}
+<link rel="stylesheet" href="{% static 'css/pokemon/poke-index.css' %}" />
+{% endblock %} {% block content %}
 
 <h1>Update Nickname for {{ pokemon.name }}</h1>
 <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save</button>
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit">Save</button>
 </form>
+<div class="pokemon-card">
+  <div class="pokemon-img-container">
+    <img src="{{ pokemon.image_url }}" alt="{{ pokemon.name }}" />
+  </div>
 
-{% endblock %}
+  {% endblock %}
+</div>
