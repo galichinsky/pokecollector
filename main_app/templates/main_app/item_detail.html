@@ -13,7 +13,7 @@
   <br>
   <p>{{ item.effect }} </p>
 </div>
-<a href="" class="btn warn">Edit</a>
-<a href="" class="btn danger">Delete</a>
+<a href="{% url 'item-update' item.id %}" class="btn warn">Edit</a>
+<a href="{% url 'item-delete' item.id %}" class="btn danger">Delete</a>
 
 {% endblock %}

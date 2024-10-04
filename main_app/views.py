@@ -1,7 +1,7 @@
 import random
 import requests
 from django.urls import reverse_lazy
-from django.views.generic.edit import DeleteView, CreateView
+from django.views.generic.edit import DeleteView, CreateView, UpdateView
 from django.views.generic import ListView, DetailView
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseNotFound
@@ -123,7 +123,7 @@ def add_feeding(request, poke_id):
 class ItemCreate(CreateView):
     model = Item
     fields = '__all__'
-    success_url = reverse_lazy('item-index')
+    success_url = '/items/'
     
 class ItemList(ListView):
     model = Item
@@ -132,3 +132,11 @@ class ItemList(ListView):
 class ItemDetail(DetailView):
     model = Item
     
+    
+class ItemUpdate(UpdateView):
+    model = Item
+    fields = ['name', 'effect']
+    
+class ItemDelete(DeleteView):
+    model = Item
+    success_url = '/items/'
